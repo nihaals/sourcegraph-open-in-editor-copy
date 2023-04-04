@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Copy URL Fragment</title>
+  </head>
+  <body>
+    <h1>Copy URL Fragment to Clipboard</h1>
+    <button id="copy-button">Copy Fragment</button>
+    <p id="message"></p>
+
+    <script>
+      document.getElementById("copy-button").addEventListener("click", async () => {
+        const fragment = window.location.hash.substring(1)
+        const messageElement = document.getElementById("message")
+
+        if (fragment) {
+          await navigator.clipboard.writeText(fragment)
+          messageElement.textContent = "Fragment copied to clipboard!"
+        } else {
+          messageElement.textContent = "No fragment found in the URL."
+        }
+      })
+    </script>
+  </body>
+</html>
